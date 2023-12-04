@@ -12,16 +12,22 @@
     <%- include("partials/header.ejs") %>
     <h1>Get your cutest dog photo!</h1>
 
-    <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="display-5 fw-bold text-body-emphasis">Centered hero</h1>
-        <div class="col-lg-6 mx-auto">
-          <p class="lead mb-4"></p>
-          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+    <% if (locals.content.message) { %>
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold text-body-emphasis">Random Dog</h1>
+            <img class="d-block mx-auto mb-4 main-image" src="<%= locals.content.message %>" alt="Random Dog image" width="500" height="400">
+            
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4"></p>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="/random-dog"><button type="button" class="custom-btn btn-5" style="width: 200px;">Get a Dog!</button></a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+    <% } else {%>
+        <h1>Sorry :( We can not found any dog photo</h1>
+    <% } %>
+   
 
 
 

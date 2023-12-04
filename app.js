@@ -7,8 +7,15 @@ import axios from "axios";
 const app = express();
 const port = 3011;
 
+// API Configuration 
+const BASE_API = "https://dog.ceo/api/";
+
+
 // Configure static files
 app.use(express.static("public"));
+
+// Body-parser configuration
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Home page
 app.get("/", (req, res) => {
@@ -18,6 +25,19 @@ app.get("/", (req, res) => {
 // Redirect to dog photo generator
 app.get("/generate", (req, res) => {
     res.render("generator.ejs");
+});
+
+// Get random dog image 
+app.get("/random-dog", async (req, res) => {
+    try {
+        const result = await axios.get(BASE_API + "breeds/image/random");
+        console.log(result.data)
+        res.render("index.ejs", {
+            content: result.data,
+        })
+    } catch (error) {
+        res.render("index.ejs", { content: JSON.stringify(error.response.data) });
+    }
 });
 
 // Listen to the port 
