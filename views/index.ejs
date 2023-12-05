@@ -10,26 +10,22 @@
 </head>
 <body>
     <%- include("partials/header.ejs") %>
+    
     <h1>Get your cutest dog photo!</h1>
-
-    <% if (locals.content.message) { %>
-        <div class="px-4 py-5 my-5 text-center">
-            <h1 class="display-5 fw-bold text-body-emphasis">Random Dog</h1>
-            <img class="d-block mx-auto mb-4 main-image" src="<%= locals.content.message %>" alt="Random Dog image" width="500" height="400">
-            
-            <div class="col-lg-6 mx-auto">
-              <p class="lead mb-4"></p>
-              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="/random-dog"><button type="button" class="custom-btn btn-5" style="width: 200px;">Get a Dog!</button></a>
-              </div>
-            </div>
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold text-body-emphasis">Random Dog</h1>
+        <% if (locals.content) { %>
+          <img class="d-block mx-auto mb-4 main-image" src="<%= locals.content.message %>" alt="Random Dog image" width="500" height="400">
+        <% } %>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4"></p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="/random-dog"><button type="button" class="custom-btn btn-5" style="width: 200px;">Get a Dog!</button></a>
           </div>
-    <% } else {%>
-        <h1>Sorry :( We can not found any dog photo</h1>
-    <% } %>
+        </div>
+    </div>
+
    
-
-
 
     <%- include("partials/footer.ejs") %>
 </body>

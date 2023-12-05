@@ -40,6 +40,23 @@ app.get("/random-dog", async (req, res) => {
     }
 });
 
+// Searching dogs
+app.get("/search-dog", async (req, res) => {
+    try {       
+        const result = await axios.get(BASE_API+"breed/"+req.query["dog-name"]+"/images");
+        // Generate random number for message array
+        const randomNumber = Math.floor(Math.random() * result.data.message.length);
+        console.log(result.data.message.length)
+        res.render("dog-list.ejs", {
+            content: result.data.message[randomNumber],
+        })
+    } catch (error) {
+        res.render("dog-list.ejs", {content: JSON.stringify(error.response.data)})
+    }
+
+    res.render("dog-list.ejs")
+});
+
 // Listen to the port 
 app.listen(port, () => {
     console.log(`Server is working on port ${port}`);
